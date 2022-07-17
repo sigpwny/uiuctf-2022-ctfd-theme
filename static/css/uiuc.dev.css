@@ -22,7 +22,9 @@ body,
     color: var(--text-color);
 }
 
-h2 {
+h1,
+h2,
+h3 {
     font-family: Consolas, monaco, monospace;
 }
 
@@ -45,4 +47,8 @@ body,
 
 a {
     color: #82bbff;
+}
+
+#score-graph>h3 {
+    color: black;
 }
