@@ -1,0 +1,30 @@
+body {
+    background-color: #181a1b;
+}
+
+.bg-dark {
+    background-color: #2c2f31 !important;
+}
+
+.jumbotron {
+    background-color: #181a1b;
+}
+
+.form-control {
+    background-color: rgb(32, 35, 37);
+    color: rgb(209, 205, 199);
+}
+
+.form-control:focus {
+    color: rgb(209, 205, 199);
+}
+
+h2 {
+    font-family: Consolas, monaco, monospace;
+}
+
+body,
+tbody,
+thead {
+    color: rgb(209, 205, 199);
+}
