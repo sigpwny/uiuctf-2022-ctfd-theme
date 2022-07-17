@@ -1,22 +1,25 @@
-body {
-    background-color: #181a1b;
+:root {
+    --graph-bg: rgba(255, 255, 255, 1.0);
+    --darkest-bg: #181a1b;
+    --navbar-color: #2c2f31;
+    --text-color: rgb(209, 205, 199);
+}
+
+body,
+.jumbotron {
+    background-color: var(--darkest-bg);
 }
 
 .bg-dark {
-    background-color: #2c2f31 !important;
-}
-
-.jumbotron {
-    background-color: #181a1b;
+    background-color: var(--navbar-color) !important;
 }
 
 .form-control {
     background-color: rgb(32, 35, 37);
-    color: rgb(209, 205, 199);
 }
 
 .form-control:focus {
-    color: rgb(209, 205, 199);
+    color: var(--text-color);
 }
 
 h2 {
@@ -24,7 +27,22 @@ h2 {
 }
 
 body,
-tbody,
-thead {
-    color: rgb(209, 205, 199);
+.table {
+    color: var(--text-color);
+}
+
+#categories-pie-graph,
+#keys-pie-graph {
+    background-color: var(--graph-bg);
+    border-radius: 1em;
+}
+
+#score-graph {
+    background-color: var(--graph-bg);
+    border-radius: 1em;
+    margin-top: 4vh;
+}
+
+a {
+    color: #82bbff;
 }
