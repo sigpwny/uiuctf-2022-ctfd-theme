@@ -24,7 +24,8 @@ body,
 
 h1,
 h2,
-h3 {
+h3,
+body {
     font-family: Consolas, monaco, monospace;
 }
 
@@ -51,4 +52,42 @@ a {
 
 #score-graph>h3 {
     color: black;
+}
+
+.challenge-placard {
+    color: white;
+}
+
+.challenge-placard>span.challenge-desc>h1 {
+    font-size: larger;
+}
+
+.challenge-placard {
+    box-shadow: 0 0 10px 3px #101010;
+    padding: 0.5em;
+}
+
+.modal-body,
+.modal-content {
+    background-color: var(--navbar-color);
+    /* border-radius: 1em; */
+}
+
+.close {
+    color: var(--text-color);
+}
+
+/* on close hover */
+.close:hover {
+    color: white;
+}
+
+.btn-info {
+    background-color: #ffffff !important;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+    background-color: var(--darkest-bg);
+    color: var(--text-color);
 }
