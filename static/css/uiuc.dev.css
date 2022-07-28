@@ -91,3 +91,12 @@ a {
     background-color: var(--darkest-bg);
     color: var(--text-color);
 }
+
+/* Fix the profile create team link */
+#profile>div>div>span>a {
+    color: #337ab7 !important;
+}
+
+#profile>div>div>span>a:hover {
+    color: #1b4263 !important;
+}
