@@ -246,9 +246,8 @@ function renderSubmissionResponse(response) {
 function markSolves() {
   challenges.map(challenge => {
     if (challenge.solved_by_me) {
-      const btn = $(`button[value="${challenge.id}"]`);
-      btn.addClass("solved-challenge");
-      btn.prepend("<i class='fas fa-check corner-button-check'></i>");
+      const btn = document.getElementById(challenge.id);
+      btn.classList.add("challenge-is-solved");
     }
   });
 }
@@ -317,33 +316,40 @@ function loadChals() {
       const chalid = chalinfo.name.replace(/ /g, "-").hashCode();
       const catid = chalinfo.category.replace(/ /g, "-").hashCode();
       const chalwrap = $(
-        "<div id='{0}' class='col-md-3 d-inline-block'></div>".format(chalid)
+        "<div id='{0}' class='col-lg-4 col-md-6 d-inline-block black-magic'></div>".format(chalid)
       );
       let chalbutton;
 
-      if (solves.indexOf(chalinfo.id) == -1) {
-        chalbutton = $(
-          "<button class='btn btn-dark challenge-button w-100 text-truncate pt-3 pb-3 mb-2' value='{0}'></button>".format(
-            chalinfo.id
-          )
-        );
-      } else {
-        chalbutton = $(
-          "<button class='btn btn-dark challenge-button solved-challenge w-100 text-truncate pt-3 pb-3 mb-2' value='{0}'><i class='fas fa-check corner-button-check'></i></button>".format(
-            chalinfo.id
-          )
-        );
+      const chalnamepng = chalinfo.name.replace(/\W/g, '').toLowerCase();
+      img_url = "/themes/uiuctf-2022-ctfd/static/img/challenge-art/" + chalnamepng + ".png";
+      chalcard = $(`<div class='btn btn-dark w-100 text-truncate pt-3 pb-3 mb-2 mt-2'></div>`);
+      chalbutton = $(
+        `<div class="challenge-button mb-5 mx-5" id='${chalinfo.id}'>
+          <div style='background: url("${img_url}"); background-size: cover;' class="challenge-spotlight-wrapper aspect-ratio-1-1">
+            <div class="mx-5 ribbon-container">
+              <div class="corner-ribbon top-left">Solved</div>
+            </div>
+            <div class='challenge-spotlight'></div>
+          </div>
+        </div>`
+      );
+      if (solves.indexOf(chalinfo.id) != -1) {
+        // add style for solved challenge
+        chalbutton.addClass("challenge-is-solved");
       }
 
+      // goes below chalbutton
       const chalheader = $("<p>{0}</p>".format(chalinfo.name));
       const chalscore = $("<span>{0}</span>".format(chalinfo.value));
+      // add tags
       for (let j = 0; j < chalinfo.tags.length; j++) {
         const tag = "tag-" + chalinfo.tags[j].value.replace(/ /g, "-");
         chalwrap.addClass(tag);
       }
 
-      chalbutton.append(chalheader);
-      chalbutton.append(chalscore);
+      chalcard.append(chalheader);
+      chalcard.append(chalscore);
+      chalbutton.append(chalcard)
       chalwrap.append(chalbutton);
 
       $("#" + catid + "-row")
@@ -351,8 +357,10 @@ function loadChals() {
         .append(chalwrap);
     }
 
-    $(".challenge-button").click(function(_event) {
-      loadChal(this.value);
+    // onclick handler
+    $(".challenge-button").on("click", function(_event) {
+      val = $(this).attr('id');
+      loadChal(val);
     });
   });
 }

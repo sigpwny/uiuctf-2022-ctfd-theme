@@ -7,6 +7,129 @@
 @import "includes/utils/opacity.scss";
 @import "includes/utils/min-height.scss";
 
+/* UIUC custom theme */
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    img {
+      object-fit: cover;
+    }
+  }
+}
+.aspect-ratio-1-1 {
+  // @include aspect-ratio(1, 1);
+  aspect-ratio: 1 / 1;
+}
+.black-magic {
+  position: relative;
+  z-index: 99;
+}
+.btn-dark,
+.btn-dark:hover,
+.btn-dark:active,
+.challenge-placard {
+  background-color: #dddddd !important;
+  color: #000000 !important;
+  border: none;
+  box-shadow: 0 0 10px 3px #101010;
+}
+#challenge {
+  img {
+    box-shadow: 0 0 10px 3px #101010;
+  }
+}
+.challenge-button {
+  cursor: pointer;
+  box-shadow: none !important;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  transition: 0.2s;
+}
+.challenge-spotlight-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px 3px #101010;
+}
+.challenge-spotlight {
+  width: 2px;
+  background: black;
+  border-radius: 50%;
+  height: 2px;
+  box-shadow: 0px 0px 150px 140px rgba(229, 229, 213, 0.8);
+  z-index: -1;
+}
+.challenge-button:hover {
+  .challenge-spotlight {
+    box-shadow: 0px 0px 150px 140px rgba(255, 255, 255, 1.0);
+  }
+}
+@media (max-width: 1199px) {
+  .challenge-spotlight {
+    box-shadow: 0px 0px 150px 10vw rgba(229, 229, 213, 0.5) !important;
+  }
+  .challenge-button:hover {
+    .challenge-spotlight {
+      box-shadow: 0px 0px 150px 10vw rgba(255, 255, 255, 1.0) !important;
+    }
+  }
+}
+@media (max-width: 767px) {
+  .challenge-spotlight {
+    box-shadow: 0px 0px 150px 40vw rgba(229, 229, 213, 0.5) !important;
+  }
+  .challenge-button:hover {
+    .challenge-spotlight {
+      box-shadow: 0px 0px 150px 40vw rgba(255, 255, 255, 1.0) !important;
+    }
+  }
+}
+.ribbon-container {
+  display: none;
+  position: absolute;
+  top: -0.5rem;
+  left: -0.5rem;
+  clip-path: inset(0.5rem 0 0 1.5rem);
+  height: 200px;
+  width: 200px;
+}
+.corner-ribbon {
+  background: #3c5;
+  width: 100px;
+  position: absolute;
+  top: 25px;
+  left: 0px;
+  text-align: center;
+  line-height: 22px;
+  letter-spacing: 1px;
+  color: #f0f0f0;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.corner-ribbon.top-left{
+  top: 25px;
+  left: 0px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.challenge-is-solved {
+  .ribbon-container {
+    display: block;
+  }
+}
+/* End UIUC custom theme */
+
 html,
 body,
 .container {
