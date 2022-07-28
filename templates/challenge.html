@@ -31,7 +31,8 @@
 						<div class="challenge-placard my-3">
 							<p class="challenge-name mb-0 font-weight-bold d-inline-block">{{ challenge.name }}</p>
 							<p class="challenge-value mb-0 d-inline-block">- {{ challenge.value }} points</p>
-							<p class="mb-0 font-italic" >{{ challenge.author }}</p>
+							<p class="mb-0 font-italic">{% if challenge.prompt %}"{{ challenge.prompt }}"{% endif %}</p>
+							<p class="mb-0" >{{ challenge.author }}</p>
 							<div class="challenge-tags mb-0">
 								{% block tags %}
 								{% for tag in tags %}

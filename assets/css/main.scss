@@ -128,6 +128,32 @@
     display: block;
   }
 }
+.container-tag {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.actual-tag {
+  display: none;
+}
+.tag-beginner {
+  .actual-tag {
+    display: block;
+    background-color: #33cc55 !important;
+  }
+}
+.tag-extreme {
+  .actual-tag {
+    display: block;
+    background-color: #ff4040 !important;
+  }
+}
+.tag-beginner .actual-tag:before {
+  content: "beginner";
+}
+.tag-extreme .actual-tag:before {
+  content: "extreme";
+}
 /* End UIUC custom theme */
 
 html,

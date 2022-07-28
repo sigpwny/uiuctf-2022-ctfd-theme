@@ -321,8 +321,8 @@ function loadChals() {
       let chalbutton;
 
       const chalnamepng = chalinfo.name.replace(/\W/g, '').toLowerCase();
-      img_url = "/themes/uiuctf-2022-ctfd/static/img/challenge-art/" + chalnamepng + ".png";
-      chalcard = $(`<div class='btn btn-dark w-100 text-truncate pt-3 pb-3 mb-2 mt-2'></div>`);
+      img_url = "/themes/core/static/img/challenge-art/" + chalnamepng + ".png";
+      chalcard = $(`<div class='btn btn-dark w-100 text-truncate pt-3 pb-3 mb-2 mt-2 position-relative'></div>`);
       chalbutton = $(
         `<div class="challenge-button mb-5 mx-5" id='${chalinfo.id}'>
           <div style='background: url("${img_url}"); background-size: cover;' class="challenge-spotlight-wrapper aspect-ratio-1-1">
@@ -337,8 +337,10 @@ function loadChals() {
         // add style for solved challenge
         chalbutton.addClass("challenge-is-solved");
       }
-
       // goes below chalbutton
+      const chaltag = $(`
+        <div class="container-tag"><span class="badge badge-info challenge-tag actual-tag"></span></div>
+      `);
       const chalheader = $("<p>{0}</p>".format(chalinfo.name));
       const chalscore = $("<span>{0}</span>".format(chalinfo.value));
       // add tags
@@ -347,6 +349,7 @@ function loadChals() {
         chalwrap.addClass(tag);
       }
 
+      chalcard.append(chaltag);
       chalcard.append(chalheader);
       chalcard.append(chalscore);
       chalbutton.append(chalcard)
