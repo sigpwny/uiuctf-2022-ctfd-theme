@@ -23,15 +23,47 @@
 					<div role="tabpanel" class="tab-pane fade show active" id="challenge">
 						
 						<script>
-							pngpath = "/themes/core/static/img/challenge-art/" + "{{ challenge.name }}".replace(/\W/g, '').toLowerCase() + ".png";
+							function htmlDecode(input) {
+							var e = document.createElement('div');
+								e.innerHTML = input;
+								return e.childNodes[0].nodeValue;
+							}
+							// const setPrompt = async (url) => {
+							// 	try {
+							// 		const response = await fetch(url);
+							// 		const data = await response.text();
+							// 		document.getElementById("challenge-prompt").textContent = '"' + data + '"';
+							// 	} catch (err) {
+							// 		console.error(err);
+							// 	}
+							// };
+							function setPrompt(url) {
+								fetch(url)
+								.then((response) => {
+									if (!response.ok) {
+										throw new Error("Could not fetch generative art prompt for challenge");
+									}
+									return response.text();
+								})
+								.then((textdata) => {
+									document.getElementById("challenge-prompt").textContent = '"' + textdata + '"';
+								})
+								.catch((error) => {
+									console.error("A problem occurred while fetching the generative art prompt for the challenge");
+								})
+							};
+							stripped_name = htmlDecode("{{ challenge.name }}").replace(/\W/g, '').toLowerCase();
+							pngpath = "/themes/core/static/img/challenge-art/" + stripped_name + ".png";
 							document.getElementById("ai-art").setAttribute("src", pngpath);
+							setPrompt("/themes/core/static/img/challenge-prompt/" + stripped_name + ".txt");
 						</script>
+						
 						<img id="ai-art" src='/themes/core/static/img/blank.png' class="img-fluid">
 
 						<div class="challenge-placard my-3">
 							<p class="challenge-name mb-0 font-weight-bold d-inline-block">{{ challenge.name }}</p>
 							<p class="challenge-value mb-0 d-inline-block">- {{ challenge.value }} points</p>
-							<p class="mb-0 font-italic">{% if challenge.prompt %}"{{ challenge.prompt }}"{% endif %}</p>
+							<p id="challenge-prompt" class="mb-0 font-italic"></p>
 							<p class="mb-0" >{{ challenge.author }}</p>
 							<div class="challenge-tags mb-0">
 								{% block tags %}
@@ -40,6 +72,7 @@
 								{% endfor %}
 								{% endblock %}
 							</div>
+							<br />
 							<span class="challenge-desc">{% block description %}{{ challenge.html }}{% endblock
 								%}</span>
 							<span class="challenge-connection-info">

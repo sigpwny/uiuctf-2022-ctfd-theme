@@ -35,6 +35,10 @@
   position: relative;
   z-index: 99;
 }
+.btn-wrap {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+}
 .btn-dark,
 .btn-dark:hover,
 .btn-dark:active,

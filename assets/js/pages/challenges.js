@@ -341,7 +341,7 @@ function loadChals() {
       const chaltag = $(`
         <div class="container-tag"><span class="badge badge-info challenge-tag actual-tag"></span></div>
       `);
-      const chalheader = $("<p>{0}</p>".format(chalinfo.name));
+      const chalheader = $("<p class='btn-wrap'>{0}</p>".format(chalinfo.name));
       const chalscore = $("<span>{0}</span>".format(chalinfo.value));
       // add tags
       for (let j = 0; j < chalinfo.tags.length; j++) {
